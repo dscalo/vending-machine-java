@@ -24,9 +24,12 @@ public class Main {
         System.out.println(snack.getDesc());
     }
 
+
     public static void main(String[] args) {
 	// write your code here
+        double newBalance = 0.00;
         double balance = 0.00;
+        double change = 0.00;
 
         ArrayList<Snack> snacks = Snacks.getSnacks("snacks.csv");
         Scanner scanner = new Scanner (System.in);
@@ -72,6 +75,10 @@ public class Main {
                         switch (choice) {
                             case "a":
                             case "A":
+                                change =  balance - snack.getPrice();
+                                System.out.printf("Thank you for purchasing with AA Vending. \nYour change is $%.2f. ", balance);
+                                System.out.printf("\nBlance: $%.2f   ",newBalance);
+
                                 // print out a thank you message
                                 // print out the users change
                                 // zero out the balance
