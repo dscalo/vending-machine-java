@@ -26,6 +26,8 @@ public class Main {
 
     public static void main(String[] args) {
 	// write your code here
+        double balance = 0.00;
+
         ArrayList<Snack> snacks = Snacks.getSnacks("snacks.csv");
         Scanner scanner = new Scanner (System.in);
 
@@ -46,10 +48,26 @@ public class Main {
                     continue;
                 }
 
+                // Valid Snack
                 Snack snack = snacks.get(snackIndex);
-                snackDisplay(snack);
 
 
+                while(true){
+                    snackDisplay(snack);
+                    if(balance < snack.getPrice()){
+                        System.out.printf(" Balance $%.2f please press 1 to add $1 or c to cancel" , balance );
+                        choice = scanner.nextLine();
+                        if(choice.equals("1")){
+                            balance+= 1.00;
+                        }
+                        if (choice.equals("c") ||choice.equals("C") ){
+                            break;
+                        }
+                    } else {
+                        System.out.printf("Balance: $%.2f press a to accept or c to cancel", balance);
+                    }
+
+                }
 
             } catch (Exception e) {
                 System.out.println("Invalid selection, please choose a snack or press q to quit");
