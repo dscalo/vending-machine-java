@@ -51,26 +51,43 @@ public class Main {
                 // Valid Snack
                 Snack snack = snacks.get(snackIndex);
 
-
-                while(true){
+                boolean snackMenu = true;
+                while(snackMenu){
                     snackDisplay(snack);
-                    if(balance < snack.getPrice()){
-                        System.out.printf(" Balance $%.2f please press 1 to add $1 or c to cancel" , balance );
+                    if (balance < snack.getPrice()) {
+                        System.out.printf(" Balance $%.2f please press 1 to add $1 or c to cancel " , balance );
                         choice = scanner.nextLine();
-                        if(choice.equals("1")){
+
+                        if (choice.equals("1")){
                             balance+= 1.00;
                         }
+
                         if (choice.equals("c") ||choice.equals("C") ){
-                            break;
+                            snackMenu = false;
                         }
                     } else {
-                        System.out.printf("Balance: $%.2f press a to accept or c to cancel", balance);
+                        System.out.printf("Balance: $%.2f press a to accept or c to cancel ", balance);
+                        choice = scanner.nextLine();
+
+                        switch (choice) {
+                            case "a":
+                            case "A":
+                                // print out a thank you message
+                                // print out the users change
+                                // zero out the balance
+                                // return to the main menu
+                                break;
+                            case "c":
+                            case "C":
+                                snackMenu = false;
+                                break;
+                        }
                     }
 
                 }
 
             } catch (Exception e) {
-                System.out.println("Invalid selection, please choose a snack or press q to quit");
+                System.out.println("Invalid selection, please choose a snack or press q to quit ");
             }
 
         }
